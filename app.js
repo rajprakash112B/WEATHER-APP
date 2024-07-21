@@ -13,7 +13,6 @@ async function checkWeather(city){
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}`;
 
     const weather_data = await fetch(`${url}`).then(response => response.json());
-    console.log(weather_data);
     
     if(weather_data.cod === `404`){
         location_not_found.style.display = "flex";
@@ -21,7 +20,8 @@ async function checkWeather(city){
         console.log("error");
         return;
     }
-
+    
+    console.log("run");
     location_not_found.style.display = "none";
     weather_body.style.display = "flex";
     temperature.innerHTML = `${Math.round(weather_data.main.temp - 273.15)}°C`;
@@ -46,6 +46,8 @@ async function checkWeather(city){
             weather_img.src = "/Pics/snow.png";
             break;
     }
+    
+    console.log(weather_data);
 }
 
 searchBtn.addEventListener('click', ()=>{
